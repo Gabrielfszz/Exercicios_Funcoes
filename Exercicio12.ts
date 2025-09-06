@@ -1,28 +1,24 @@
-// Define uma função chamada 'fatorial'.
-// 'n: number' é o número do qual queremos calcular o fatorial.
-// ': number' indica que a função retornará um valor numérico.
-function fatorial(n: number): number {
-    // Inicializa uma variável 'resultado' com o valor 1.
-    // Este será o nosso "acumulador", onde guardaremos o produto dos números.
-    // Começamos com 1 porque é o elemento neutro da multiplicação.
-    let resultado = 1;
-
-    // Inicia um laço de repetição 'for' (loop).
-    // 1. Inicialização: 'let i = n' -> Cria um contador 'i' que começa com o valor de 'n'.
-    // 2. Condição: 'i > 1' -> O loop continuará executando enquanto 'i' for maior que 1.
-    // 3. Decremento: 'i--' -> Ao final de cada iteração, o valor de 'i' é reduzido em 1.
-    for (let i = n; i > 1; i--) {
-        // Multiplica o valor atual de 'resultado' pelo valor atual de 'i'.
-        // É a forma curta de escrever: resultado = resultado * i;
-        resultado *= i;
-    }
-
-    // Após o loop terminar, a variável 'resultado' conterá o valor do fatorial.
-    // A função então retorna este valor.
-    return resultado;
+// Define uma função chamada jurosSimples que calcula o valor final (montante)
+// de uma aplicação a juros simples.
+// @param capital: O valor inicial do investimento (ex: 1000).
+// @param taxa: A taxa de juros por período, em formato decimal (ex: 0.05 para 5%).
+// @param tempo: O número de períodos que o capital ficará aplicado.
+// @returns: O valor do capital inicial somado aos juros (montante).
+function jurosSimples(capital: number, taxa: number, tempo: number): number {
+    // A fórmula do valor final é: Capital Inicial + Juros.
+    // Onde a fórmula dos juros é: Juros = Capital * Taxa * Tempo.
+    return capital + (capital * taxa * tempo);
 }
 
-// Chama a função 'fatorial' com o argumento 5.
-// A função calculará 5 * 4 * 3 * 2 e retornará 120.
-// O resultado é então exibido no console.
-console.log(`Fatorial de 5 = ${fatorial(5)}`);
+// Imprime o resultado da função no console de forma formatada.
+console.log(
+    // A string `VF = R$ ` será combinada com o resultado da expressão dentro de ${}.
+    // `jurosSimples(1000, 0.05, 12)`: Chama a função com os seguintes valores:
+    // Capital = 1000
+    // Taxa    = 0.05 (ou 5%)
+    // Tempo   = 12 períodos
+    // O cálculo será: 1000 + (1000 * 0.05 * 12) = 1000 + 600 = 1600.
+    //
+    // `.toFixed(2)`: Formata o número 1600 para uma string "1600.00", garantindo duas casas decimais.
+    `VF = R$ ${jurosSimples(1000, 0.05, 12).toFixed(2)}`
+);
